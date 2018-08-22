@@ -1,9 +1,9 @@
 # reactNativeApp
 react native first app，demo
 
-# 需要先安装jdk>1.8,配置java环境变量
-# 本人安装android studio,按照官网文档构建项目，搭建模拟器，采用的是studio的模拟器，按照官网文档搭建
-# react-native run-android, 命令跑起来，but肯定会报错
+### 需要先安装jdk>1.8,配置java环境变量
+### 本人安装android studio,按照官网文档构建项目，搭建模拟器，采用的是studio的模拟器，按照官网文档搭建
+### react-native run-android, 命令跑起来，but肯定会报错
   1. 报各种包找不到com.android.tools.build:gradle:3.0.0, 此时我采用了网友的
   ```
     android->build.gradle文件中
