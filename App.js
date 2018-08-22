@@ -10,7 +10,10 @@ import {
   StyleSheet,
   Text,
   View,
-  Image
+  Image,
+  TextInput,
+  Button,
+  Alert
 } from 'react-native';
 
 const instructions = Platform.select({
@@ -28,38 +31,48 @@ export default class App extends Component<Props> {
       this.state = {
           pic:{
               uri: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'
-          }
+          },
+          text:''
       }
   }
   render() {
     return (
+        <View>
+            <Image source={this.state.pic} style={{'height':100, width:'100%'}}></Image>
+            <View style={{height: 50,'flexDirection':'row','justifyContent':'space-between',"alignItems":'center'}}>
+                <View style={{width: 50, height: 50, backgroundColor: 'powderblue'}}/>
+                <View style={{width: 50, height: 50, backgroundColor: 'skyblue'}} />
+                <View style={{width: 50, height: 50, backgroundColor: 'steelblue'}} />
+            </View>
+            <View style={{padding:10, fontSize: 42}}>
+                <TextInput
+                    style={{height: 40}}
+                    placeholder="Type here to translate!"
+                    onChangeText={(text) => this.setState({text})}
+                />
+                <Text style={{padding: 10, fontSize: 42}}>
+                    {this.state.text.split(' ').map((word) => word && '🍕').join(' ')}
+                </Text>
+                <Button
+                    onPress={() => {
+                        Alert.alert("你点击了按钮！");
+                    }}
+                    title="点我！"
+                />
+            </View>
+        </View>
 
-      <View style={styles.container}>
-        <Image source={this.state.pic} style={{width: '100%', height: 110}} />
-        <Text style={styles.welcome}>我是2244
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit App.js
-        </Text>
-        <Text style={styles.instructions}>
-          {instructions}
-        </Text>
-      </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    display:'flex',
-    justifyContent: 'center',
-    alignContent:'center',
     backgroundColor: '#F5FCFF',
   },
   welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+    height:200,
+    backgroundColor:"#f00"
   },
   instructions: {
     textAlign: 'center',
