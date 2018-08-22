@@ -2,7 +2,8 @@
 react native first app，demo
 
 ### 需要先安装jdk>1.8,配置java环境变量
-### 本人安装android studio,按照官网文档构建项目，搭建模拟器，采用的是studio的模拟器，按照官网文档搭建
+### 本人安装android studio
+    按照官网文档构建项目，配置sdk到环境变量中，采用的是studio的模拟器，按照官网文档搭建
 ### react-native run-android, 命令跑起来，but肯定会报错
   1. 报各种包找不到com.android.tools.build:gradle:3.0.0, 此时我采用了网友的
   ```
@@ -23,3 +24,6 @@ react native first app，demo
     }
   ```
   加了此时还是报错，此时，去android studio，console中可以看到各种需要update，按照要求update便是， 新建一个模拟器，在执行项目。 终于跑起来了。。。。
+  
+  ### live load
+    开发项目需要实时加载，我还没有找到，官网中的开发菜单中live load，我采用的在模拟器上，键盘按下r键，刷新
