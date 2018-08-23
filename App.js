@@ -7,13 +7,16 @@
 import React, { Component } from 'react';
 import {
   Platform,
+  ScrollView,
   StyleSheet,
   Text,
   View,
   Image,
   TextInput,
   Button,
-  Alert
+  Alert,
+  TouchableHighlight,
+  TouchableNativeFeedback
 } from 'react-native';
 
 const instructions = Platform.select({
@@ -35,33 +38,52 @@ export default class App extends Component<Props> {
           text:''
       }
   }
+  _onPressButton(){
+      Alert.alert("TouchableHighlight");
+  }
   render() {
     return (
-        <View>
-            <Image source={this.state.pic} style={{'height':100, width:'100%'}}></Image>
-            <View style={{height: 50,'flexDirection':'row','justifyContent':'space-between',"alignItems":'center'}}>
-                <View style={{width: 50, height: 50, backgroundColor: 'powderblue'}}/>
-                <View style={{width: 50, height: 50, backgroundColor: 'skyblue'}} />
-                <View style={{width: 50, height: 50, backgroundColor: 'steelblue'}} />
+        <ScrollView>
+            <View>
+                <Image source={this.state.pic} style={{'height':100, width:'100%'}}></Image>
+                <Image source={this.state.pic} style={{'height':100, width:'100%'}}></Image>
+                <Image source={this.state.pic} style={{'height':100, width:'100%'}}></Image>
+                <Image source={this.state.pic} style={{'height':100, width:'100%'}}></Image>
+                <View style={{height: 50,'flexDirection':'row','justifyContent':'space-between',"alignItems":'center'}}>
+                    <View style={{width: 50, height: 50, backgroundColor: 'powderblue'}}/>
+                    <View style={{width: 50, height: 50, backgroundColor: 'skyblue'}} />
+                    <View style={{width: 50, height: 50, backgroundColor: 'steelblue'}} />
+                </View>
+                <View style={{padding:10, fontSize: 42}}>
+                    <TextInput
+                        style={{height: 40}}
+                        placeholder="Type here to translate!"
+                        onChangeText={(text) => this.setState({text})}
+                    />
+                    <Text style={{padding: 10, fontSize: 42}}>
+                        {this.state.text.split(' ').map((word) => word && '🍕').join(' ')}
+                    </Text>
+                    <Button
+                        onPress={() => {
+                            Alert.alert("你点击了按钮！");
+                        }}
+                        title="点我！"
+                    />
+                </View>
+                <TouchableHighlight onPress={this._onPressButton} underlayColor="white">
+                    <View style={styles.button}>
+                        <Text style={styles.buttonText}>TouchableHighlight</Text>
+                    </View>
+                </TouchableHighlight>
+                <TouchableNativeFeedback
+                    onPress={this._onPressButton}
+                    background={Platform.OS === 'android' ? TouchableNativeFeedback.SelectableBackground() : ''}>
+                    <View style={styles.button}>
+                        <Text style={styles.buttonText}>TouchableNativeFeedback</Text>
+                    </View>
+                </TouchableNativeFeedback>
             </View>
-            <View style={{padding:10, fontSize: 42}}>
-                <TextInput
-                    style={{height: 40}}
-                    placeholder="Type here to translate!"
-                    onChangeText={(text) => this.setState({text})}
-                />
-                <Text style={{padding: 10, fontSize: 42}}>
-                    {this.state.text.split(' ').map((word) => word && '🍕').join(' ')}
-                </Text>
-                <Button
-                    onPress={() => {
-                        Alert.alert("你点击了按钮！");
-                    }}
-                    title="点我！"
-                />
-            </View>
-        </View>
-
+        </ScrollView>
     );
   }
 }
@@ -79,4 +101,14 @@ const styles = StyleSheet.create({
     color: '#f00',
     marginBottom: 5,
   },
+  button:{
+      marginBottom: 30,
+      width: 260,
+      alignItems: 'center',
+      backgroundColor: '#2196F3'
+  },
+  buttonText:{
+      padding: 20,
+      color: 'white'
+  }
 });
