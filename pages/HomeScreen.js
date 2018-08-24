@@ -18,6 +18,8 @@ import {
     TouchableNativeFeedback
 } from 'react-native';
 
+import FadeInView from "../pages/component/FadeInView"
+
 
 const instructions = Platform.select({
     ios: 'Press Cmd+R to reload,\n' +
@@ -55,45 +57,47 @@ export default class HomeScreen extends Component<Props> {
         const { navigate } = this.props.navigation;
         return (
             <ScrollView>
-                <View>
-                    <Image source={this.state.pic} style={{'height':100, width:'100%'}}></Image>
-                    <View style={{height: 50,'flexDirection':'row','justifyContent':'space-between',"alignItems":'center'}}>
-                        <View style={{width: 50, height: 50, backgroundColor: 'powderblue'}}/>
-                        <View style={{width: 50, height: 50, backgroundColor: 'skyblue'}} />
-                        <View style={{width: 50, height: 50, backgroundColor: 'steelblue'}} />
-                    </View>
+                <FadeInView>
+                    <View>
+                        <Image source={this.state.pic} style={{'height':100, width:'100%'}}></Image>
+                        <View style={{height: 50,'flexDirection':'row','justifyContent':'space-between',"alignItems":'center'}}>
+                            <View style={{width: 50, height: 50, backgroundColor: 'powderblue'}}/>
+                            <View style={{width: 50, height: 50, backgroundColor: 'skyblue'}} />
+                            <View style={{width: 50, height: 50, backgroundColor: 'steelblue'}} />
+                        </View>
 
-                    <View style={{padding:10, fontSize: 42}}>
-                        <TextInput
-                            style={{height: 40}}
-                            placeholder="Type here to translate!"
-                            onChangeText={(text) => this.setState({text})}
-                        />
-                        <Text style={{padding: 10, fontSize: 42}}>
-                            {this.state.text.split(' ').map((word) => word && '🍕').join(' ')}
-                        </Text>
-                        <View style={styles.btns}>
-                            <Button
-                                onPress={() => {
-                                    navigate("FetchData", { name: 'fetch-demo' })
-                                }}
-                                title="FetchData"
+                        <View style={{padding:10, fontSize: 42}}>
+                            <TextInput
+                                style={{height: 40}}
+                                placeholder="Type here to translate!"
+                                onChangeText={(text) => this.setState({text})}
                             />
-                            <Button
-                                onPress={() => {
-                                    navigate("FlatList", { name: 'FlatList长列表' })
-                                }}
-                                title="FlatList长列表"
-                            />
-                            <Button
-                                onPress={() => {
-                                    navigate("MovieDemo", { name: 'MovieDemo' })
-                                }}
-                                title="MovieDemo"
-                            />
+                            <Text style={{padding: 10, fontSize: 42}}>
+                                {this.state.text.split(' ').map((word) => word && '🍕').join(' ')}
+                            </Text>
+                            <View style={styles.btns}>
+                                <Button
+                                    onPress={() => {
+                                        navigate("FetchData", { name: 'fetch-demo' })
+                                    }}
+                                    title="FetchData"
+                                />
+                                <Button
+                                    onPress={() => {
+                                        navigate("FlatList", { name: 'FlatList长列表' })
+                                    }}
+                                    title="FlatList长列表"
+                                />
+                                <Button
+                                    onPress={() => {
+                                        navigate("MovieDemo", { name: 'MovieDemo' })
+                                    }}
+                                    title="MovieDemo"
+                                />
+                            </View>
                         </View>
                     </View>
-                </View>
+                </FadeInView>
             </ScrollView>
         );
     }
